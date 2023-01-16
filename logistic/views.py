@@ -7,3 +7,9 @@ def home(request):
 
 def about(request):
     return render(request, 'logistic/about.html')
+
+def service(request):
+    return render(request, 'logistic/service.html')
+
+def contact(request):
+    return render(request, 'logistic/contact.html')
