@@ -15,11 +15,11 @@
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
-                    <a href="index-2.html">Home</a>
+                    <a href="{% url 'home' %}">Home</a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Contact</a></li>
                 </ol>
-              </nav>
+            </nav>
+            <li class="breadcrumb-item"><a href="{% url 'contact' %}">Contact</a></li>
             </div>
           </div>
         </div>

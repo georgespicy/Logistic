@@ -45,7 +45,7 @@
           <div class="row align-items-center">
             <div class="col-xl-2 col-lg-2">
               <div class="logo">
-                <a href="index-2.html"
+                <a href="{% url 'home' %}"
                   ><img src="{% static 'img/logo/logo.png' %}" alt=""
                 /></a>
               </div>
@@ -57,11 +57,11 @@
                 <div class="main-menu d-none d-lg-block">
                   <nav>
                     <ul id="navigation">
-                      <li><a href="index-2.html">Home</a></li>
-                      <li><a href="about.html">About</a></li>
-                      <li><a href="services.html">Services</a></li>
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'about' %}">About</a></li>
+                      <li><a href="{% url 'service' %}">Services</a></li>
                       <li>
-                        <a href="blog.html">Blog</a>
+                        <a href="{% url 'blog' %}">Blog</a>
                         <!-- <ul class="submenu">
                           <li><a href="blog.html">Blog</a></li>
                           <li>
@@ -70,13 +70,13 @@
                           <li><a href="elements.html">Element</a></li>
                         </ul> -->
                       </li>
-                      <li><a href="contact.html">Contact</a></li>
+                      <li><a href="{% url 'contact' %}">Contact</a></li>
                     </ul>
                   </nav>
                 </div>
 
                 <div class="header-right-btn d-none d-lg-block ml-20">
-                  <a href="contact.html" class="btn header-btn">Get A Qoue</a>
+                  <a href="{% url 'about' %}" class="btn header-btn">Get A Qoue</a>
                 </div>
               </div>
             </div>
