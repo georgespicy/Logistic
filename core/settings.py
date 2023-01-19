@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "logistic",
     "blog",
     "account",
+    "django_quill",
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,47 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "account.User"
+QUILL_CONFIGS = {
+    "default": {
+        "theme": "snow",
+        "placeholder": "Compose an epic...",
+        "modules": {
+            "syntax": True,
+            "toolbar": [
+                [
+                    {"font": []},
+                    {"header": [1,2,3,4,5,6, False]},
+                    {"align": []},
+                    {"size": ['small', 'large', 'huge']},                      
+                    {'list': 'ordered'},
+                    {'list': 'bullet'},
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strike",
+                    "blockquote",
+                    {"color": []},
+                    {"background": []},
+                ],
+                ["code-block", "link", "image"],                
+                ["clean"],
+            ],
+            # quill-image-compress
+            "imageCompressor": {
+                "quality": 0.8,
+                "maxWidth": 2000,
+                "maxHeight": 2000,
+                "imageType": "image/jpeg",
+                "keepImageTypes": [],
+                "ignoreImageTypes": False,
+                "debug": False,
+                "suppressErrorLogging": True,
+            },
+            # quill-resize
+            "resize": {
+                "showSize": True,
+                "locale": {},
+            },
+        },
+    },
+}
