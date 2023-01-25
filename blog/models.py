@@ -32,7 +32,6 @@ todo Post Fields
 class Post(models.Model):
   title = models.CharField(max_length=255) 
   author = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default="Author")
-  short_description = models.TextField(null=True, blank=True)
   post_image = models.ImageField(      
     upload_to='posts/images',
     validators=[
