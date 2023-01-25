@@ -1,9 +1,21 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .models import Category, Post
 
 def blog(request):
-    return render(request, 'blog/blog.html')
+    categories = Category.objects.all()[:6]
+    posts = Post.objects.all()
+    context = {
+        'categories': categories,
+        'posts': posts
+    }
+    return render(request, 'blog/blog.html', context)
 
-def blog_detail(request):
-    return render(request, 'blog/blog_detail.html')
+def blog_detail(request, slug):
+    post = Post.objects.get(slug=slug)
+    categories = Category.objects.all()[:6]
+    context = {
+        'categories': categories,
+        'post': post,
+        
+    }
+    return render(request, 'blog/blog_detail.html', context)
