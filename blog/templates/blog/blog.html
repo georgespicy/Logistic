@@ -30,9 +30,13 @@
   <section class="blog_area section-padding">
     <div class="container">
       <div class="row">
+
         <div class="col-lg-8 mb-5 mb-lg-0">
           <div class="blog_left_sidebar">
 
+            {% if posts %}
+              
+            
             {% for post in posts %}
                           
             <article class="blog_item">
@@ -92,8 +96,24 @@
                 </li>
               </ul>
             </nav>
+            {% else %}
+
+            <div class="text-center py-5" style="margin-top: 40px !important;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="#d6293e">
+                <path
+                   d="M12.884 2.532c-.346-.654-1.422-.654-1.768 0l-9 17A.999.999 0 0 0 3 21h18a.998.998 0 0 0 .883-1.467L12.884 2.532zM13 18h-2v-2h2v2zm-2-4V9h2l.001 5H11z">
+                </path>
+             </svg>
+              <h4 style="margin-top: 20px;">No posts at the moment</h4>
+            </div>
+
+            {% endif %}
+
+            
           </div>
         </div>
+
+
         <div class="col-lg-4">
           <div class="blog_right_sidebar">
             <aside class="single_sidebar_widget search_widget">
@@ -124,6 +144,8 @@
             </aside>
             <aside class="single_sidebar_widget post_category_widget">
               <h4 class="widget_title">Category</h4>
+
+              {% if categories %}                              
               <ul class="list cat-list">
 
                 {% for category in categories %}                  
@@ -136,6 +158,9 @@
                 {% endfor %}
                 
               </ul>
+              {% else %}
+              <p>No categories at the moment</p>
+              {% endif %}
             </aside>
             <aside class="single_sidebar_widget popular_post_widget">
               <h3 class="widget_title">Recent Post</h3>
