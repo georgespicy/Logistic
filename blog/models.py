@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
 from account.models import User
 from django.core.validators import FileExtensionValidator
 from django_quill.fields import QuillField
-
+from django.urls import reverse
 
 class Category(models.Model):
   name = models.CharField(max_length=150)
@@ -55,3 +55,54 @@ class Post(models.Model):
   def save(self, *args, **kwargs):
     self.slug = slugify(self.title)
     super().save(*args, **kwargs)
+    
+  
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    date_liked = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = ("Like")
+        verbose_name_plural = ("Likes")
+
+    def __str__(self):
+      return f'{self.post} liked by {self.user}'
+      
+    def save(self, *args, **kwargs):
+      self.slug = slugify(self.user)
+      super().save(*args, **kwargs)
+  
+
+class Dislike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    date_liked = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        verbose_name = ("Dislike")
+        verbose_name_plural = ("Dislikes")
+
+    def __str__(self):
+      return f'{self.post} disliked by {self.user}'
+      
+    def save(self, *args, **kwargs):
+      self.slug = slugify(self.user)
+      super().save(*args, **kwargs)
+      
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_comment = QuillField()
+    date_commented = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = ("Comment")
+        verbose_name_plural = ("Comments")
+
+    def __str__(self):
+        return f"{self.user}  ---  {self.post_comment}"
+
+    def get_absolute_url(self):
+        return reverse("Comment_detail", kwargs={"pk": self.pk})
